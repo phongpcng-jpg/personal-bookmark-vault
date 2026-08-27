@@ -1,0 +1,2 @@
+import {describe,it,expect} from 'vitest'; import {buildApp} from '../src/app.js';
+describe('V1 auth boundary',()=>{it('rejects malformed register input',async()=>{const app=buildApp();const r=await app.inject({method:'POST',url:'/api/auth/register',payload:{username:'a',password:'x'}});expect(r.statusCode).toBe(400);await app.close();});it('requires authentication for bookmarks',async()=>{const app=buildApp();const r=await app.inject({method:'GET',url:'/api/bookmarks'});expect(r.statusCode).toBe(401);await app.close();});});

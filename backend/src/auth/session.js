@@ -1,0 +1,1 @@
+export async function requireSession(request,reply){if(!request.session.userId)return reply.code(401).send({success:false,error:{code:'UNAUTHENTICATED',message:'Authentication required'}});request.user={id:request.session.userId};}
